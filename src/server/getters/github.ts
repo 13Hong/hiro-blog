@@ -4,7 +4,7 @@ import axios from '../services/axios'
 // @ts-ignore
 
 
-const token = import.meta.env.SECRET_TOKEN
+const token = import.meta.env.PUBLIC_SECRET_TOKEN
 
 const graphqlGitHub = async <T = any>(query: string): Promise<T> => {
   return axios
