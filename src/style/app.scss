@@ -13,3 +13,6 @@
 // markdown style
 @import './markdown.scss';
 
+* {
+    @apply transition-colors duration-300
+}
