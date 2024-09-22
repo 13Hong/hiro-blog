@@ -30,24 +30,7 @@ export default {
       url: '/rss.xml'
     }
   ],
-  linkedList:[
-      {
-        label: 'Surmon',
-        link: 'https://surmon.me',
-      },
-      {
-        label: '俊劫学习基地',
-        link: 'https://alexjjwu.fun',
-      },
-      {
-        label: 'Liuzepeng',
-        link: 'https://www.liuzepeng.com',
-      },
-      {
-        label: 'evex.one',
-        link: 'https://evex.one/',
-      },
-  ]
+  
 }
 
 export const twikoo = {

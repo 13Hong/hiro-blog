@@ -26,23 +26,6 @@ let wx = 'https://chetxu.chetserenade.info/article/wx.webp'
     <img src={wx} class="w-48 h-48 mt-3" alt="微信" />
   </div>
 
-  <h2 class="font-bold mb-3 text-md desktop" data-pagefind-ignore>LINKS /「 友链 」</h2>
-  <div class="mx-auto text-sm desktop" data-pagefind-ignore>
-    <div class="footer-links prose">
-      <div>
-        {
-          config.linkedList.map(
-            (res: { link: string | URL | null | undefined; label: unknown }) => (
-              <>
-                <a class="item" href={res.link} target="_blank" rel="noopener noreferrer">
-                  {res.label}
-                </a>
-                <div class="vertical" />
-              </>
-            )
-          )
-        }
-      </div>
-    </div>
+
   </div>
 </Home>
