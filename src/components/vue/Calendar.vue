@@ -110,7 +110,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="calendar bg-crystalClear dark:bg-slate-800" data-pagefind-ignore>
+  <div class="calendar bg-background-secondary/90" data-pagefind-ignore>
     <ul class="aggregate-calendar">
       <li class="month" v-for="(month, index) in months" :key="index">
         <calendar-day
@@ -128,7 +128,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/mixins";
+@use "@/style/mixins" as *;
 
 .calendar {
   border-radius: 4px;

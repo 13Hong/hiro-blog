@@ -1,0 +1,106 @@
+/**
+ * Design System Theme Variables
+ * 语义化颜色 token，支持亮色/暗色模式自动切换
+ */
+
+:root {
+  /* ========================================
+   * 表面色 (Surface Colors)
+   * ======================================== */
+  --color-bg: 222 222 222;           /* 基础背景 - 柔和灰白 */
+  --color-bg-secondary: 250 250 250; /* 卡片/区块背景 */
+  --color-bg-tertiary: 255 255 255;  /* 高亮区域 */
+  --color-bg-overlay: 255 255 255;   /* 弹窗/tooltip */
+
+  /* ========================================
+   * 文字色 (Text Colors)
+   * ======================================== */
+  --color-text: 23 23 23;            /* 主要文字 - 避免纯黑 */
+  --color-text-secondary: 82 82 82;  /* 次要文字 */
+  --color-text-nav: #cc8c8c;  /* 导航文字 */
+  --color-text-muted: 115 115 115;   /* 辅助/提示文字 */
+  --color-text-inverted: 250 250 250;/* 反色文字 */
+
+  /* ========================================
+   * 边框色 (Border Colors)
+   * ======================================== */
+  --color-border: 229 229 229;
+  --color-border-light: 240 240 240;
+
+  /* ========================================
+   * 强调色 (Accent Colors)
+   * ======================================== */
+  --color-accent: 0 136 245;         /* 主强调色 - 蓝色 */
+  --color-accent-hover: 0 112 201;
+
+  /* ========================================
+   * 功能色 (Semantic Colors)
+   * ======================================== */
+  --color-success: 16 185 129;
+  --color-warning: 245 158 11;
+  --color-error: 239 68 68;
+  --color-info: 59 130 246;
+
+  /* ========================================
+   * 阴影 (Shadows)
+   * ======================================== */
+  --shadow-opacity: 0.1;
+
+  /* ========================================
+   * 卡片专用 (Card)
+   * ======================================== */
+  --color-card-bg: 255 255 255;           /* 纯白卡片 (透明卡片使用 #fff9) */
+  --color-card-border: 200 200 200;       /* 稍深的边框增强可见性 */
+  --color-card-shadow: 0 0 0;
+  --card-shadow-opacity: 0.12;            /* 稍强的阴影 */
+}
+
+/* ==========================================
+ * 暗色模式 (Dark Mode)
+ * ========================================== */
+.dark {
+  /* 表面色 - 柔和深灰，避免纯黑 */
+  --color-bg: 18 18 18;              /* 主背景 */
+  --color-bg-secondary: 26 26 26;    /* 卡片背景 */
+  --color-bg-tertiary: 35 35 35;     /* 高亮区域 */
+  --color-bg-overlay: 45 45 45;      /* 弹窗背景 */
+
+  /* 文字色 - 柔和浅灰，避免纯白 */
+  --color-text: 237 237 237;
+  --color-text-secondary: 163 163 163;
+  --color-text-muted: 115 115 115;
+  --color-text-inverted: 23 23 23;
+
+  /* 边框色 */
+  --color-border: 55 55 55;
+  --color-border-light: 45 45 45;
+
+  /* 暗色模式下强调色稍亮 */
+  --color-accent: 51 153 255;
+  --color-accent-hover: 77 166 255;
+
+  /* 阴影更明显 */
+  --shadow-opacity: 0.3;
+
+  /* 卡片专用 */
+  --color-card-bg: 30 30 30;              /* 深灰卡片 */
+  --color-card-border: 55 55 55;          /* 边框更可见 */
+  --color-card-shadow: 0 0 0;
+  --card-shadow-opacity: 0.25;
+}
+
+/* ==========================================
+ * 主题过渡 (Theme Transition)
+ * 只在 html 元素上添加，避免全局性能问题
+ * ========================================== */
+html {
+  transition: background-color 0.3s ease;
+}
+
+/* 需要平滑过渡的元素添加此 class */
+.theme-transition {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.15s ease;
+}

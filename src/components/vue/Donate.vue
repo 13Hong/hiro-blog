@@ -18,7 +18,8 @@ const loadTwikoo = () => {
 
   const twikooElement = document.querySelector('#twikoo');
   if (twikooElement) {
-    twikooElement.classList.add('bg-commentBackground', 'dark:bg-[#44444499]');
+    // 使用语义化颜色 class，无需 dark: 前缀
+    twikooElement.classList.add('bg-background-secondary/90');
   }
 };
 

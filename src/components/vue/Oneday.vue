@@ -16,7 +16,7 @@ const getPointHeightStyle = (value: number) => {
 
 <template>
   <div
-    class="day bg-lunarLight dark:bg-slate-600"
+    class="day bg-background-tertiary"
     :data-date="date"
     :data-total-count="total"
     :data-contribution-count="contributions"
@@ -46,7 +46,7 @@ const getPointHeightStyle = (value: number) => {
         }"
       />
     </div>
-    <div class="tooltip bg-techNoir dark:bg-slate-800" v-if="total">
+    <div class="tooltip bg-background-overlay" v-if="total">
       <p class="date">{{ date }}</p>
       <ul class="counts">
         <li class="item article">
@@ -70,7 +70,8 @@ const getPointHeightStyle = (value: number) => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/mixins";
+@use "sass:color";
+@use "@/style/mixins" as *;
 
 li {
   text-decoration: none;
@@ -96,7 +97,7 @@ li {
 
   &:not([data-total-count="0"]) {
     &:hover {
-      outline: 1px solid #000;
+      outline: 1px solid rgb(var(--color-border));
     }
     .point:hover {
       & + .tooltip {
@@ -135,7 +136,7 @@ li {
     padding: 8px 1rem;
     padding-right: 1rem;
     border-radius: 4px;
-    color: #444;
+    color: rgb(var(--color-text-secondary));
     @include hidden();
     &::before {
       $size: 4px;
@@ -152,7 +153,7 @@ li {
     }
 
     .date {
-      color: #fff;
+      color: rgb(var(--color-text));
       font-weight: bold;
       margin-bottom: 4px;
     }
@@ -178,7 +179,7 @@ li {
         }
 
         &.contribution {
-          color: #fff;
+          color: rgb(var(--color-text));
         }
 
         .count {
@@ -202,7 +203,7 @@ li {
   &[data-article-count="1"] {
     .point {
       .article {
-        background-color: lighten(#f8981d, 20%);
+        background-color: color.scale(#f8981d, $lightness: 51%);
       }
     }
   }
@@ -212,7 +213,7 @@ li {
   &[data-article-count="4"] {
     .point {
       .article {
-        background-color: lighten(#f8981d, 10%);
+        background-color: color.scale(#f8981d, $lightness: 25.5%);
       }
     }
   }
@@ -230,7 +231,7 @@ li {
   &[data-instagram-count="1"] {
     .point {
       .instagram {
-        background-color: lighten(#ed4956, 20%);
+        background-color: color.scale(#ed4956, $lightness: 51%);
       }
     }
   }
@@ -239,7 +240,7 @@ li {
   &[data-instagram-count="3"] {
     .point {
       .instagram {
-        background-color: lighten(#ed4956, 10%);
+        background-color: color.scale(#ed4956, $lightness: 25.5%);
       }
     }
   }

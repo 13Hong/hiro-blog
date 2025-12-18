@@ -1,5 +1,5 @@
 ---
-const { posts } = Astro.props
+const { posts } = Astro.props;
 ---
 
 <section
@@ -12,26 +12,26 @@ const { posts } = Astro.props
           posts.length > 0 ? (
             posts.map(
               (post: {
-                url: any
+                url: any;
                 frontmatter: {
-                  title: unknown
-                  image: string | null | undefined
-                  description: unknown
-                }
+                  title: unknown;
+                  image: string | null | undefined;
+                  description: unknown;
+                };
               }) => (
-                <li class="list-item dark:hover:bg-lightGray w-auto transition-colors duration-200 rounded overflow-hidden bg-frostedGlass dark:bg-markerShadow">
+                <li class="card card--clickable w-auto">
                   <a class="item-article block" href={post.url}>
-                    <picture class="thumbnail list-item block w-full h-22 opacity-90 bg-module-bg-darker-2 transition-all duration-100">
+                    <picture class="thumbnail block w-full h-22 opacity-90 bg-module-bg-darker-2">
                       <img
                         class="w-full h-full object-cover object-center"
                         src={post.frontmatter.image}
                         alt=""
                       />
                     </picture>
-                    <div class="title defaultColor dark:text-snowfallWhite">
+                    <div class="title text-foreground">
                       {post.frontmatter.title}
                     </div>
-                    <div class=" defaultColor description dark:text-secondary  w-full px-2 transition-colors duration-100 overflow-hidden overflow-ellipsis whitespace-nowrap">
+                    <div class="text-foreground-secondary description w-full px-2 transition-colors duration-100 overflow-hidden overflow-ellipsis whitespace-nowrap">
                       {post.frontmatter.description}
                     </div>
                   </a>
@@ -50,7 +50,7 @@ const { posts } = Astro.props
 
 <style lang="scss" scoped>
   .related-body {
-    font-family: 'Monda', Arial, sans-serif;
+    font-family: "Monda", Arial, sans-serif;
     word-break: break-word;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -80,7 +80,7 @@ const { posts } = Astro.props
     }
 
     .thumbnail:after {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 100%;
@@ -120,7 +120,7 @@ const { posts } = Astro.props
 
     a:hover,
     a:focus {
-      color: rgba(0, 0, 0, 0.86);
+      color: rgb(var(--color-text) / 0.86);
     }
 
     .item-article:hover .thumbnail {

@@ -43,7 +43,7 @@ const handleMouseLeave = () => {
   <transition name="fade">
     <div v-if="isVisible" class="modal" @click="closeModal">
       <div
-        class="modal-content bg-snowfallWhite text-stone-950 dark:bg-[#232323]"
+        class="modal-content bg-background text-foreground"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
       >

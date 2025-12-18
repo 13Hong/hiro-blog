@@ -1,18 +1,22 @@
-// mixins
-@import './mixins.scss';
+// Design System Theme (CSS Variables)
+@use './theme.css';
+
+// mixins - 使用 @use 替代 @import
+@use './mixins.scss' as *;
 
 // reset style
-@import './reset.scss';
+@use './reset.scss';
 
 // mobile style
-@import './mobile.scss';
+@use './mobile.scss';
 
 // Iconfont
-@import './iconfont.scss';
+@use './iconfont.scss';
 
 // markdown style
-@import './markdown.scss';
+@use './markdown.scss';
 
-* {
-    @apply transition-colors duration-300
-}
+// NOTE: 已移除全局 transition-colors
+// 原来这里有: * { @apply transition-colors duration-300 }
+// 问题: 导致所有元素都有颜色过渡，性能差且可能产生意外效果
+// 解决: 现在只在 html 元素和需要的组件上添加 .theme-transition class

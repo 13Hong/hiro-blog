@@ -2,6 +2,54 @@
   font-family: "SpecialSymbol", Arial, sans-serif !important;
 }
 
+/* ==========================================
+ * 卡片基础样式 (Card Base Styles)
+ * ========================================== */
+.card {
+  /* 结构 */
+  border-radius: 0.5rem; /* rounded-lg */
+  overflow: hidden;
+
+  /* 视觉层级 */
+  background-color: rgb(var(--color-card-bg));
+  border: 1px solid rgb(var(--color-card-border) / 0.5);
+  box-shadow: 0 1px 3px rgb(var(--color-card-shadow) / var(--card-shadow-opacity));
+
+  /* 交互过渡 - 避免 transition-all */
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgb(var(--color-card-border));
+  box-shadow: 0 6px 16px rgb(var(--color-card-shadow) / calc(var(--card-shadow-opacity) * 2));
+}
+
+/* 可点击的卡片 - 添加微位移 */
+.card--clickable {
+  cursor: pointer;
+}
+
+.card--clickable:hover {
+  transform: translateY(-2px);
+}
+
+/* 半透明卡片 - 用于需要显示底层背景的场景 */
+.card--transparent {
+  /* #fff9 = #ffffff99 = 白色 60% 透明度 */
+  background-color: #fff9;
+  backdrop-filter: blur(1px);
+  border: 1px solid rgb(var(--color-card-border) / 0.8);
+  box-shadow: 0 2px 8px rgb(var(--color-card-shadow) / 0.15);
+}
+
+.card--transparent:hover {
+  background-color: #fffb; /* #ffffffbb = 白色 73% 透明度 */
+  box-shadow: 0 6px 16px rgb(var(--color-card-shadow) / 0.2);
+}
+
 #background {
   position: fixed;
   width: 100%;
@@ -18,11 +66,11 @@
 }
 
 h2 {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgb(var(--color-text) / 0.8);
 }
 
 .defaultColor {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgb(var(--color-text) / 0.8);
 }
 
 .prose-width {
@@ -36,7 +84,7 @@ h2 {
   }
 
   a {
-    color: #2e9fff;
+    color: rgb(var(--color-accent));
     font-weight: 800;
     margin-left: 3px;
     margin-right: 3px;
@@ -44,7 +92,7 @@ h2 {
   }
 
   svg {
-    color: #2e9fff;
+    color: rgb(var(--color-accent));
   }
 }
 
@@ -68,7 +116,7 @@ h2 {
   padding: 0 1.236rem;
   text-decoration: none;
   letter-spacing: 0.5px;
-  color: var(--text-secondary) !important;
+  color: rgb(var(--color-text-secondary)) !important;
   will-change: background-color;
   transition: background-color 0.06s;
   border-radius: 4px;
@@ -85,9 +133,24 @@ h2 {
   margin: 0;
   padding: 0;
   width: 100%;
-  color: #cc8c8c !important;
+  color: var(--color-text-nav);
   align-items: flex-start;
   display: flex;
+
+  /* 导航链接样式 */
+  a {
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: rgb(var(--color-accent));
+    }
+
+    /* 激活状态 */
+    &.active {
+      color: rgb(var(--color-accent));
+      font-weight: 600;
+    }
+  }
 }
 
 .calendar {
@@ -103,8 +166,9 @@ h2 {
   margin-right: 1.236rem;
 }
 
+/* 通用激活状态（保留向后兼容） */
 .active {
-  color: #0088f5;
+  color: rgb(var(--color-accent));
 }
 
 .anchor {
@@ -185,7 +249,7 @@ h2 {
 
 .divider {
   flex: 1;
-  border-top: 1px dashed #9e8f8f !important;
+  border-top: 1px dashed rgb(var(--color-border)) !important;
   margin: 10px 0 !important;
 }
 
@@ -224,7 +288,7 @@ h2 {
   height: 0.9em;
   margin: 0 0.9rem;
   vertical-align: middle;
-  border-left: 1px solid rgba(0, 0, 0, 0.26);
+  border-left: 1px solid rgb(var(--color-border) / 0.5);
 }
 
 /* 适用于一些 WebKit 内核的浏览器 */
@@ -277,7 +341,7 @@ h2 {
 }
 
 .tk-comments-no {
-  border-top: 1px dashed #ababab;
+  border-top: 1px dashed rgb(var(--color-border));
 }
 
 .el-loading-spinner {

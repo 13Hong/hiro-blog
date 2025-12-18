@@ -1,4 +1,4 @@
-@import "./mixins.scss";
+@use "./mixins.scss" as *;
 
 @include scrollbar-style($size: 7px, $bg: #d2cfcf, $thumb-bg: #a7a7a7, $thumb-bg-hover: #cc8c8c);
 

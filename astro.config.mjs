@@ -16,5 +16,15 @@ export default defineConfig({
     },
   },
   site: 'https://hiroblog.netlify.app/',
-  integrations: [tailwind(),vue()]
+  integrations: [tailwind(), vue()],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // 使用现代 Sass API，消除 legacy-js-api 警告
+          api: 'modern-compiler',
+        },
+      },
+    },
+  },
 });
