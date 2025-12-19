@@ -1,50 +1,34 @@
-// Reference: @author Surmon <https://github.com/surmon-china>
-
-import axios from '../services/axios'
-// @ts-ignore
-
-
-const token = import.meta.env.PUBLIC_SECRET_TOKEN
+/**
+ * GitHub GraphQL API 客户端
+ * 通过 /api/github 代理请求，Token 存储在服务端
+ */
 
 const graphqlGitHub = async <T = any>(query: string): Promise<T> => {
-  return axios
-    .request<any>({
-      // https://github.com/settings/tokens
-      // Set the environment variable in Netlify to store your private token
-      
-      // TODO: Look out.
-      // Here I do not do the proxy on the server side, 
-      // Authorization will be exposed in the browser,
-      // which will cause potential hazards. 
-      headers: { Authorization: `Bearer ${token}` },
-      url: `https://api.github.com/graphql`, 
-      method: 'POST',
-      data: JSON.stringify({
-        query: `query {
-        user(login: "13Hong") {
-          ${query}
-        }
-      }`
-      })
-    })
-    .then((response: { data: { errors: any[]; data: { user: any } } }) => {
-      
-      return response.data.errors
-        ? Promise.reject(response.data.errors.map((error) => error.message).join('; '))
-        : Promise.resolve(response.data.data.user)
-    })
+  const response = await fetch('/api/github', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  })
+  
+  const data = await response.json()
+  
+  if (data.error) {
+    throw new Error(data.error)
+  }
+  
+  return data
 }
 
-const isISODateString = (dateString: string) => {
-  if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(dateString)) return false
-  
+const isISODateString = (dateString: string): boolean => {
+  if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(dateString)) {
+    return false
+  }
   return new Date(dateString).toISOString() === dateString
 }
 
-
 export const getGitHubContributions = async (from: string, to: string): Promise<any> => {
   if (!isISODateString(from) || !isISODateString(to)) {
-    return Promise.reject('Invalid date string!')
+    throw new Error('Invalid date string!')
   }
 
   const result = await graphqlGitHub(`
@@ -62,8 +46,7 @@ export const getGitHubContributions = async (from: string, to: string): Promise<
       }
     }
   `)
-  
-  
-  
+
   return result.contributionsCollection.contributionCalendar
 }
+
