@@ -10,9 +10,10 @@ import github from "../images/github.svg";
 import juejin from "../images/juejin.svg";
 import youtube from "../images/youtube.svg";
 
-// Article collection
+// 获取文章数据用于日历组件
 const articleData = await getArticleData();
 
+// 社交链接配置
 const contacts = [
   {
     icon: github,
@@ -37,18 +38,40 @@ const contacts = [
 ];
 ---
 
+<!-- ========================================
+     首页内容区域
+     
+     布局说明：
+     - 桌面端 (>1010px): 显示日历 + 社交链接 + 文章列表
+     - 移动端 (<1010px): 仅显示文章列表 (日历和社交链接隐藏)
+     ======================================== -->
 <Home>
   <div class="text-sm pt-[5px]">
+    <!-- ========================================
+         近期动态标题 - 仅桌面端显示
+         ======================================== -->
     <h2 class="font-bold mb-6 text-md desktop" data-pagefind-ignore>
       PERECENT TRENDS / 「 近期动态 」
     </h2>
+
+    <!-- ========================================
+         GitHub 贡献度日历 - 仅桌面端显示
+         移动端通过 .desktop 类自动隐藏
+         ======================================== -->
     <div class="desktop">
+      <!-- 骨架屏占位符 - 日历加载完成后移除 -->
       <div id="skeleton" class="navigation-template bg-background-secondary/60">
       </div>
+      <!-- Vue 日历组件 - 展示 GitHub 贡献度和文章发布情况 -->
       <div id="calendar">
         <Calendar client:only="vue" article={articleData} />
       </div>
     </div>
+
+    <!-- ========================================
+         社交链接栏 - 仅桌面端显示
+         包含: GitHub、掘金、Twitter、YouTube 链接
+         ======================================== -->
     <div class="prose-width mb-5 mt-2 text-md desktop">
       <div class="navigation bg-background-secondary/60">
         {
@@ -70,12 +93,21 @@ const contacts = [
             );
           })
         }
+        <!-- 桌面端搜索组件 -->
         <PageFind transition:persist />
       </div>
     </div>
   </div>
 
+  <!-- ========================================
+       文章列表区域 - 桌面端和移动端都显示
+       
+       RecentList 组件内部区分:
+       - 桌面端: 使用 ArticleList 组件 (横向卡片布局)
+       - 移动端: 使用 MobileArticleList 组件 (纵向卡片布局)
+       ======================================== -->
   <div class="text-sm" data-pagefind-ignore>
+    <!-- 近期文章标题 - 仅桌面端显示 -->
     <h2 class="font-bold mt-6 mb-6 text-md desktop" data-pagefind-ignore>
       PERECENT ARTICLES/「 近期文章 」
     </h2>

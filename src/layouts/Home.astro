@@ -5,6 +5,18 @@ import PageFind from "@/components/PageFind";
 import config from "../config";
 ---
 
+<!-- ========================================
+     主页布局组件
+     
+     布局结构说明：
+     - 桌面端 (>1010px): 左右两栏布局
+       - 左侧: 导航栏 + 头像 + 社交链接 + 暗黑模式切换
+       - 右侧: 内容区 (GitHub 日历 + 文章列表)
+     - 移动端 (<1010px): 单栏布局 + 抽屉式导航
+       - 顶栏: 汉堡菜单 + 标题 + 暗黑模式切换
+       - 导航: 默认隐藏，点击汉堡菜单展开抽屉
+       - 内容: 文章列表 (日历隐藏)
+     ======================================== -->
 <BaseLayout
   title={Astro.props.title
     ? `${Astro.props.title} | ${config.title}`
@@ -12,15 +24,22 @@ import config from "../config";
 >
   <div>
     <div class="lg:flex home">
+      <!-- ========================================
+           桌面端导航栏 (仅 >1010px 显示)
+           包含: 头像、名称、签名、暗黑模式切换、导航链接
+           ======================================== -->
       <div id="pc-container" class="sm:px-10 lg:mt-10 py-20 desktop nav-view">
         <div class="sticky top-5 flex flex-col gap-4">
+          <!-- 头像 -->
           <div class="w-32 h-32 bg-cover bg-center inline-block mx-auto">
             <img class="rounded" src="/ogImage.png" alt="头像" />
           </div>
+          <!-- 名称与签名 -->
           <div class="mediate" data-pagefind-ignore>
             <p class="font-bold text-2xl text-foreground">{config.name}</p>
             <div class="text-foreground-secondary text-base font-light my-2">
               <div class="flex">
+                <!-- 暗黑模式切换按钮 (桌面端) -->
                 <div id="theme">
                   <ToggleTheme />
                 </div>
@@ -29,6 +48,7 @@ import config from "../config";
             </div>
           </div>
 
+          <!-- 导航链接列表 -->
           <div
             class="flex lg:flex-col gap-4 mx-auto nav-webfont"
             data-pagefind-ignore
@@ -51,6 +71,7 @@ import config from "../config";
               })
             }
           </div>
+          <!-- 博客年份 -->
           <div
             class="text-foreground-muted text-sm mediate"
             data-pagefind-ignore
@@ -60,20 +81,28 @@ import config from "../config";
         </div>
       </div>
 
+      <!-- ========================================
+           移动端抽屉式导航 (仅 <1010px 显示)
+           默认隐藏，点击汉堡菜单后滑入显示
+           注意: 初始状态不包含 opened-pc 类，抽屉默认隐藏
+           ======================================== -->
       <div
         id="mobile-container"
-        class="sm:px-10 lg:mt-10 py-20 mobile mobile-menu opened opened-pc"
+        class="sm:px-10 lg:mt-10 py-20 mobile mobile-menu opened"
       >
         <div class="sticky top-5 flex flex-col gap-4">
           <div class="mediate">
+            <!-- 头像 -->
             <div class="w-32 h-32 bg-cover bg-center inline-block mx-auto">
               <img class="rounded" src="/ogImage.png" alt="头像" />
             </div>
+            <!-- 名称与签名 -->
             <p class="font-bold text-2xl text-foreground font-name">
               {config.name}
             </p>
             <div class="text-foreground-secondary text-base font-light my-2">
               <div class="flex">
+                <!-- 暗黑模式切换按钮 (抽屉内) -->
                 <div id="theme">
                   <ToggleTheme />
                 </div>
@@ -83,6 +112,7 @@ import config from "../config";
               </div>
             </div>
           </div>
+          <!-- 导航链接列表 -->
           <div
             class="flex lg:flex-col gap-4 mx-auto nav-webfont"
             data-pagefind-ignore
@@ -105,6 +135,7 @@ import config from "../config";
               })
             }
           </div>
+          <!-- 博客年份 -->
           <div
             class="text-foreground-muted text-sm mediate"
             data-pagefind-ignore
@@ -114,27 +145,41 @@ import config from "../config";
         </div>
       </div>
 
+      <!-- ========================================
+           移动端顶部导航栏 (仅 <1010px 显示)
+           三栏布局: 汉堡菜单 | 标题 | 暗黑模式切换
+           ======================================== -->
       <div
         class="toggle bg-background-secondary/60 mobile header-navbar"
         data-pagefind-ignore
       >
+        <!-- 左侧: 汉堡菜单按钮 - 用于展开/收起抽屉导航 -->
         <div class="toggle-menu" id="toggle">
           <i class="iconfont icon-menu"></i>
         </div>
-        <div class="header-slogan" data-pagefind-ignore>Jed's log(mobile)</div>
-        <div class="toggle-menu">
-          <PageFind transition:persist />
+        <!-- 中间: 网站标题 -->
+        <div class="header-slogan" data-pagefind-ignore>Hiro's log</div>
+        <!-- 右侧: 暗黑模式切换按钮 -->
+        <div class="toggle-menu toggle-theme-btn">
+          <ToggleTheme />
         </div>
       </div>
 
+      <!-- 移动端遮罩层 - 点击可关闭抽屉导航 -->
       <div id="shading" class="shading container-mains opened"></div>
 
+      <!-- ========================================
+           主内容区域
+           桌面端: 显示 GitHub 日历 + 文章列表
+           移动端: 仅显示文章列表 (日历通过 .desktop 类隐藏)
+           ======================================== -->
       <div class="lg:mt-28 mx-4 mx-0 ml-52 md container-main opened">
         <div class="container">
           <slot />
         </div>
       </div>
 
+      <!-- 桌面端目录插槽 -->
       <div class="desktop">
         <slot name="catalogue" />
       </div>
