@@ -22,6 +22,7 @@ module.exports = {
 					secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
 					muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
 					inverted: 'rgb(var(--color-text-inverted) / <alpha-value>)',
+					name: 'rgb(var(--color-name) / <alpha-value>)',  /* 名称蓝色，支持亮暗模式 */
 				},
 				border: {
 					DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',

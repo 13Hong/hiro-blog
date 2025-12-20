@@ -31,12 +31,21 @@ import config from "../config";
       <div id="pc-container" class="sm:px-10 lg:mt-10 py-20 desktop nav-view">
         <div class="sticky top-5 flex flex-col gap-4">
           <!-- 头像 -->
-          <div class="w-32 h-32 bg-cover bg-center inline-block mx-auto">
-            <img class="rounded" src="/ogImage.png" alt="头像" />
+          <!-- 
+            头像容器说明：
+            - w-32 h-32: 固定 128px 尺寸
+            - mx-auto: 水平居中
+          -->
+          <div class="w-32 h-32 inline-block mx-auto">
+            <img
+              class="rounded w-full h-full object-cover transition-transform duration-700 ease-in-out hover:rotate-[540deg]"
+              src="/flower.jpg"
+              alt="头像"
+            />
           </div>
           <!-- 名称与签名 -->
           <div class="mediate" data-pagefind-ignore>
-            <p class="font-bold text-2xl text-foreground">{config.name}</p>
+            <p class="font-bold text-2xl text-foreground-name">{config.name}</p>
             <div class="text-foreground-secondary text-base font-light my-2">
               <div class="flex">
                 <!-- 暗黑模式切换按钮 (桌面端) -->
@@ -93,11 +102,20 @@ import config from "../config";
         <div class="sticky top-5 flex flex-col gap-4">
           <div class="mediate">
             <!-- 头像 -->
-            <div class="w-32 h-32 bg-cover bg-center inline-block mx-auto">
-              <img class="rounded" src="/ogImage.png" alt="头像" />
+            <!-- 
+              头像容器说明（移动端抽屉）：
+              - w-32 h-32: 固定 128px 尺寸
+              - mx-auto: 水平居中
+            -->
+            <div class="w-32 h-32 inline-block mx-auto">
+              <img
+                class="rounded w-full h-full object-cover transition-transform duration-700 ease-in-out hover:rotate-[360deg]"
+                src="/flower.jpg"
+                alt="头像"
+              />
             </div>
             <!-- 名称与签名 -->
-            <p class="font-bold text-2xl text-foreground font-name">
+            <p class="font-bold text-2xl text-foreground-name font-name">
               {config.name}
             </p>
             <div class="text-foreground-secondary text-base font-light my-2">
@@ -173,7 +191,7 @@ import config from "../config";
            桌面端: 显示 GitHub 日历 + 文章列表
            移动端: 仅显示文章列表 (日历通过 .desktop 类隐藏)
            ======================================== -->
-      <div class="lg:mt-28 mx-4 mx-0 ml-52 md container-main opened">
+      <div class="lg:mt-28 ml-52 md container-main opened">
         <div class="container">
           <slot />
         </div>
