@@ -12,6 +12,18 @@ const total = computed(() => props.articles + props.contributions);
 const getPointHeightStyle = (value: number) => {
   return isNaN(value) ? 0 : `${Math.floor(value * 100)}%`;
 };
+
+// 蓝色贡献色阶（从浅到深）
+// 使用 CSS 变量适配亮/暗模式
+const getContributionColor = computed(() => {
+  const count = props.contributions;
+  if (count === 0) return 'transparent';
+  // 4 级蓝色，与主题强调色协调
+  if (count === 1) return 'rgba(51, 153, 255, 0.35)';  // 最浅
+  if (count <= 3) return 'rgba(51, 153, 255, 0.55)';   // 中等
+  if (count <= 6) return 'rgba(51, 153, 255, 0.75)';   // 较深
+  return 'rgba(51, 153, 255, 0.95)';                   // 最深
+});
 </script>
 
 <template>
@@ -41,8 +53,8 @@ const getPointHeightStyle = (value: number) => {
       <div
         class="item contribution"
         :style="{
-          height: getPointHeightStyle(3 / 3),
-          backgroundColor: githubColor,
+          height: getPointHeightStyle(contributions / total),
+          backgroundColor: getContributionColor,
         }"
       />
     </div>
