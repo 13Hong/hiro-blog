@@ -3,6 +3,11 @@ import ToggleTheme from "@/components/ToggleTheme";
 import BaseLayout from "./BaseLayout.astro";
 import PageFind from "@/components/PageFind";
 import config from "../config";
+import LocaleToggle from "@/components/vue/LocaleToggle";
+import NavigationLinks from "@/components/vue/NavigationLinks";
+import BlogSince from "@/components/vue/BlogSince";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!-- ========================================
@@ -47,45 +52,32 @@ import config from "../config";
           <div class="mediate" data-pagefind-ignore>
             <p class="font-bold text-2xl text-foreground-name">{config.name}</p>
             <div class="text-foreground-secondary text-base font-light my-2">
-              <div class="flex">
+              <div class="flex items-center gap-3">
                 <!-- 暗黑模式切换按钮 (桌面端) -->
                 <div id="theme">
                   <ToggleTheme />
                 </div>
-                <span class="ml-6 mt-1">{config.signature}</span>
+                <!-- 语言切换按钮 (桌面端) -->
+                <LocaleToggle client:load />
+                <span class="ml-3 mt-1">{config.signature}</span>
               </div>
             </div>
           </div>
 
           <!-- 导航链接列表 -->
-          <div
-            class="flex lg:flex-col gap-4 mx-auto nav-webfont"
-            data-pagefind-ignore
-          >
-            {
-              config.navs.map((nav) => {
-                const { pathname } = Astro.url;
-                const trimmedPathname =
-                  pathname === "/" ? pathname : pathname.replace(/\/$/, "");
-                const isActive = trimmedPathname === nav.url;
-                return (
-                  <a
-                    href={nav.url}
-                    class:list={isActive ? "active" : ""}
-                    rel={nav.url.startsWith("http") ? "noopener" : undefined}
-                  >
-                    {nav.title}
-                  </a>
-                );
-              })
-            }
+          <div data-pagefind-ignore>
+            <NavigationLinks
+              client:load
+              navs={config.navs}
+              currentPath={currentPath}
+            />
           </div>
           <!-- 博客年份 -->
           <div
             class="text-foreground-muted text-sm mediate"
             data-pagefind-ignore
           >
-            Blog since {config.since}
+            <BlogSince client:load since={config.since} />
           </div>
         </div>
       </div>
@@ -131,34 +123,19 @@ import config from "../config";
             </div>
           </div>
           <!-- 导航链接列表 -->
-          <div
-            class="flex lg:flex-col gap-4 mx-auto nav-webfont"
-            data-pagefind-ignore
-          >
-            {
-              config.navs.map((nav) => {
-                const { pathname } = Astro.url;
-                const trimmedPathname =
-                  pathname === "/" ? pathname : pathname.replace(/\/$/, "");
-                const isActive = trimmedPathname === nav.url;
-                return (
-                  <a
-                    href={nav.url}
-                    class:list={isActive ? "active" : ""}
-                    rel={nav.url.startsWith("http") ? "noopener" : undefined}
-                  >
-                    {nav.title}
-                  </a>
-                );
-              })
-            }
+          <div data-pagefind-ignore>
+            <NavigationLinks
+              client:load
+              navs={config.navs}
+              currentPath={currentPath}
+            />
           </div>
           <!-- 博客年份 -->
           <div
             class="text-foreground-muted text-sm mediate"
             data-pagefind-ignore
           >
-            Blog since {config.since}
+            <BlogSince client:load since={config.since} />
           </div>
         </div>
       </div>
