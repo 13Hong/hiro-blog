@@ -2,6 +2,152 @@
   font-family: "SpecialSymbol", Arial, sans-serif !important;
 }
 
+// 暗黑模式/中英切换 按钮样式
+// hover 效果：蓝色调渐变背景 + 立体阴影层次感
+#theme {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: 
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+
+  // hover 立体效果 - 亮色模式
+  &:hover {
+    // 蓝色调渐变背景，从浅到深营造立体感
+    background: linear-gradient(
+      145deg,
+      rgba(0, 136, 245, 0.12) 0%,    // 左上浅蓝 (高光)
+      rgba(0, 136, 245, 0.22) 100%   // 右下深蓝 (阴影)
+    );
+    
+    // 多层阴影实现立体深度：
+    // 1. 外部柔和蓝色光晕
+    // 2. 内部上方亮边 (高光)
+    // 3. 内部下方暗边 (阴影)
+    box-shadow: 
+      0 4px 12px rgba(0, 136, 245, 0.2),           // 外部柔和阴影
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),    // 内部顶部高光
+      inset 0 -1px 1px rgba(0, 80, 160, 0.1);      // 内部底部阴影
+    
+    // 微微上移增加悬浮感
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 
+      0 2px 6px rgba(0, 136, 245, 0.15),
+      inset 0 1px 2px rgba(0, 80, 160, 0.15);
+  }
+}
+
+// 暗色模式下的 hover 效果
+.dark #theme {
+  &:hover {
+    // 暗色模式蓝色调，使用更亮的蓝色适配深色背景
+    background: linear-gradient(
+      145deg,
+      rgba(51, 153, 255, 0.18) 0%,    // 左上亮蓝
+      rgba(51, 153, 255, 0.28) 100%   // 右下稍深蓝
+    );
+    
+    box-shadow: 
+      0 4px 14px rgba(51, 153, 255, 0.25),         // 外部蓝色光晕
+      inset 0 1px 1px rgba(120, 180, 255, 0.25),   // 内部顶部淡蓝高光
+      inset 0 -1px 1px rgba(20, 60, 120, 0.3);     // 内部底部深蓝阴影
+  }
+
+  &:active {
+    box-shadow: 
+      0 2px 8px rgba(51, 153, 255, 0.2),
+      inset 0 1px 2px rgba(20, 60, 120, 0.25);
+  }
+}
+
+// ==========================================
+// 主题控制区容器样式 (Theme Controls Container)
+// 蓝色调玻璃态效果 + 微光边框
+// ==========================================
+.theme-controls {
+  padding: 6px 10px;
+  border-radius: 10px;
+  position: relative;
+  
+  // 玻璃态蓝色背景 - 亮色模式
+  background: linear-gradient(
+    135deg,
+    rgba(0, 136, 245, 0.06) 0%,
+    rgba(0, 136, 245, 0.03) 50%,
+    rgba(100, 180, 255, 0.06) 100%
+  );
+  
+  // 微妙蓝色边框 + 顶部高光
+  border: 1px solid rgba(0, 136, 245, 0.12);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),        // 内部顶部高光线
+    0 1px 3px rgba(0, 80, 160, 0.06);              // 外部微妙阴影
+  
+  // 背景模糊效果（玻璃态）
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  transition: 
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  // hover 效果 - 更明显的蓝色调
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 136, 245, 0.10) 0%,
+      rgba(0, 136, 245, 0.06) 50%,
+      rgba(100, 180, 255, 0.10) 100%
+    );
+    border-color: rgba(0, 136, 245, 0.20);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 2px 8px rgba(0, 136, 245, 0.12);
+  }
+}
+
+// 暗色模式下的容器样式
+.dark .theme-controls {
+  // 暗色模式蓝色玻璃态
+  background: linear-gradient(
+    135deg,
+    rgba(51, 153, 255, 0.08) 0%,
+    rgba(51, 153, 255, 0.04) 50%,
+    rgba(80, 140, 220, 0.08) 100%
+  );
+  
+  border: 1px solid rgba(51, 153, 255, 0.15);
+  box-shadow: 
+    inset 0 1px 0 rgba(120, 180, 255, 0.1),       // 暗色高光更柔和
+    0 1px 4px rgba(0, 0, 0, 0.2);                  // 暗色模式阴影更深
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(51, 153, 255, 0.14) 0%,
+      rgba(51, 153, 255, 0.08) 50%,
+      rgba(80, 140, 220, 0.14) 100%
+    );
+    border-color: rgba(51, 153, 255, 0.25);
+    box-shadow: 
+      inset 0 1px 0 rgba(120, 180, 255, 0.15),
+      0 3px 12px rgba(51, 153, 255, 0.15);
+  }
+}
+
+
 /* ==========================================
  * 卡片基础样式 (Card Base Styles)
  * ========================================== */
