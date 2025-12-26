@@ -1,72 +1,72 @@
 ---
 const { headings } = Astro.props as {
   headings: Array<{
-    depth: number
-    slug: string
-    text: string
-  }>
-}
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+};
 // @ts-ignore
 const { frontmatter } = Astro.props as {
-  title: string
-}
+  title: string;
+};
 
-const { minutesRead } = Astro.props.frontmatter
+const { minutesRead } = Astro.props.frontmatter;
 
 function getIcon(depth: number) {
   switch (depth) {
     case 1:
-      return 'icon-h-1'
+      return "icon-h-1";
     case 2:
-      return 'icon-h-2'
+      return "icon-h-2";
     case 3:
-      return 'icon-h-3'
+      return "icon-h-3";
     case 4:
-      return 'icon-h-4'
+      return "icon-h-4";
     default:
-      return 'icon-h-5'
+      return "icon-h-5";
   }
 }
 
 function convertToChineseTime(timeString: string) {
   const timePattern =
-    /(\d+)\s*(min|minute|min\s+read|分钟\s+阅读|hr|hour|hour\s+read|小时\s+阅读|day|天|week|周|month|月|year|年)\s*(read)?/i
-  const match = timeString.match(timePattern)
+    /(\d+)\s*(min|minute|min\s+read|分钟\s+阅读|hr|hour|hour\s+read|小时\s+阅读|day|天|week|周|month|月|year|年)\s*(read)?/i;
+  const match = timeString.match(timePattern);
 
   if (match) {
-    const value = parseInt(match[1])
-    const unit = match[2].toLowerCase()
-    let chineseUnit
+    const value = parseInt(match[1]);
+    const unit = match[2].toLowerCase();
+    let chineseUnit;
 
     switch (unit) {
-      case 'min':
-      case 'minute':
-        chineseUnit = '分钟'
-        break
-      case 'hr':
-      case 'hour':
-        chineseUnit = '小时'
-        break
-      case 'day':
-        chineseUnit = '天'
-        break
-      case 'week':
-        chineseUnit = '周'
-        break
-      case 'month':
-        chineseUnit = '月'
-        break
-      case 'year':
-        chineseUnit = '年'
-        break
+      case "min":
+      case "minute":
+        chineseUnit = "分钟";
+        break;
+      case "hr":
+      case "hour":
+        chineseUnit = "小时";
+        break;
+      case "day":
+        chineseUnit = "天";
+        break;
+      case "week":
+        chineseUnit = "周";
+        break;
+      case "month":
+        chineseUnit = "月";
+        break;
+      case "year":
+        chineseUnit = "年";
+        break;
       default:
-        chineseUnit = '无法识别的单位'
+        chineseUnit = "无法识别的单位";
     }
 
-    return `${value} ${chineseUnit}`
+    return `${value} ${chineseUnit}`;
   }
 
-  return '无法识别的时间格式'
+  return "无法识别的时间格式";
 }
 ---
 
@@ -80,7 +80,7 @@ function convertToChineseTime(timeString: string) {
         <div class="title">{frontmatter.title}</div>
         {frontmatter.title && frontmatter.language ? (
           <div class="read" data-pagefind-ignore>
-            {frontmatter.language}，共 {minutesRead.words} 字，需阅读{' '}
+            {frontmatter.language}，共 {minutesRead.words} 字，需阅读{" "}
             {convertToChineseTime(minutesRead.text)}
           </div>
         ) : null}
@@ -90,7 +90,7 @@ function convertToChineseTime(timeString: string) {
           <li>
             <a
               class={`toc-link text-gray-500 hover:text-gray-900 text-sm mb-2 ${
-                heading.depth > 2 ? 'ml-4' : ''
+                heading.depth > 2 ? "ml-4" : ""
               }`}
               href={`#${heading.slug}`}
             >
@@ -171,11 +171,11 @@ function convertToChineseTime(timeString: string) {
 
   .header {
     display: flex;
+    flex-direction: column;
     flex-shrink: 0;
-    height: 4rem;
+    min-height: 4rem;
     line-height: 25px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding: 8px;
   }
 
   .anchor .header .title {
