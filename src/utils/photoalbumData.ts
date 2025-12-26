@@ -11,6 +11,36 @@ export interface PhotoImage {
 
 export const photoImages: PhotoImage[] = [
   {
+    label: "Sadie👧🏼",
+    time: "2025/12/26",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/202512264.jpg",
+  },
+  {
+    label: "Sadie👧🏼",
+    time: "2025/12/26",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/202512262.jpg",
+  },
+  {
+    label: "Sadie👧🏼",
+    time: "2025/12/26",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/202512261.jpg",
+  },
+  {
+    label: "搞怪Sadie👧🏼",
+    time: "2025/12/26",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/20251226.jpg",
+  },
+  {
+    label: "怪奇物语",
+    time: "2025/12/26",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/202512263.jpg",
+  },
+  {
     label: "周也🎶",
     time: "2025/12/25",
     size: { width: 0, height: 0 },
