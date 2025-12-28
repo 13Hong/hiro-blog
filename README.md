@@ -1,16 +1,16 @@
-# Jed's log
+# Hiro's log
 
 **A minimalist personal blog**
 
 **My personal website and blog, powered by [Astro(4)](https://astro.build/) complete.**
 
-**Preview Address: [Jedxu.inf](https://jedxu.info/)**
+**Preview Address: [hiroblog](https://hiroblog.netlify.app/)**
 
-----
+---
 
 ## Stack:
 
-- **Astro**:  Astro powers the world's fastest websites
+- **Astro**: Astro powers the world's fastest websites
 - **Typescript**: Typed JavaScript for better tools
 - **Tailwind CSS**: Practical First CSS Framework
 - **Vue3**: Partially adopting Vue3 component form
@@ -18,7 +18,7 @@
 ## Plan Todo:
 
 - **UI**: Better looking UI style (minimalist style)
-- **Dark mode**: Switching between light and dark modes
+- **PageFind**: Optimize PageFind
 - **Responsive**: Good design for mobile device
 
 ## Development Setup
@@ -35,16 +35,7 @@ $ pnpm run start
 
 ## Screenshot
 
-![White Theme](/screenhots/WhitePC.png)
-
-![Black Theme](/screenhots/BlackPC.png)
-
-![Photo album](/screenhots/Album.png)
-
-![mobile phone](/screenhots/MobileEnd.png)
-
-![mobile menu](/screenhots/MobileEndMenu.png)
-
+<!-- ![White Theme](/screenhots/WhitePC.png) -->
 
 ### License
 
