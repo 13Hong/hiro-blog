@@ -84,7 +84,7 @@ export const photoImages: PhotoImage[] = [
   },
   {
     label: "露营喝茶🍵",
-    time: "2024/10/11",
+    time: "2025/10/11",
     size: { width: 0, height: 0 },
     href: "https://img.hiro7.info/images/20251011.jpg",
   },
