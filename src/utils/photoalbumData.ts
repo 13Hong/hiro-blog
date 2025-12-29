@@ -41,6 +41,12 @@ export const photoImages: PhotoImage[] = [
     href: "https://img.hiro7.info/images/202512263.jpg",
   },
   {
+    label: "三星五费🌟",
+    time: "2025/12/25",
+    size: { width: 0, height: 0 },
+    href: "https://img.hiro7.info/images/20251225_1.PNG",
+  },
+  {
     label: "周也🎶",
     time: "2025/12/25",
     size: { width: 0, height: 0 },
