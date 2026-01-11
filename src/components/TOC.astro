@@ -77,7 +77,7 @@ function convertToChineseTime(timeString: string) {
       data-pagefind-ignore
     >
       <button class="header" title="高高山上走" data-pagefind-ignore>
-        <div class="title">{frontmatter.title}</div>
+        <div class="title dark:!text-gray-200">{frontmatter.title}</div>
         {frontmatter.title && frontmatter.language ? (
           <div class="read" data-pagefind-ignore>
             {frontmatter.language}，共 {minutesRead.words} 字，需阅读{" "}
@@ -95,7 +95,9 @@ function convertToChineseTime(timeString: string) {
               href={`#${heading.slug}`}
             >
               <i class={`toc-icon iconfont ${getIcon(heading.depth)}`} />
-              <span class="truncated-title text">{heading.text}</span>
+              <span class="truncated-title text dark:!text-gray-400">
+                {heading.text}
+              </span>
             </a>
           </li>
         ))}
