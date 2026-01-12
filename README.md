@@ -35,7 +35,11 @@ $ pnpm run start
 
 ## Screenshot
 
-<!-- ![White Theme](/screenhots/WhitePC.png) -->
+![White Theme](/screenshots/lightHomePage.png)
+
+![dark Theme](/screenshots/darkHomePage.png)
+
+![dark Theme](/screenshots/darkPhotoPage.png)
 
 ### License
 
